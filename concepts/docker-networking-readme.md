@@ -40,7 +40,7 @@ Run the below commands & it will show the IP address of the container "172.17.0.
 default via 172.17.0.1 dev eth0
 172.17.0.0/16 dev eth0 scope link  src 172.17.0.3
 ```
-To check the network interface (like docker0, ip address) on the host, we need to login to the linux VM. Since docker-desktop for windows run on a VM called as MobyLinuxVM, but you cannot login to that VM via Hyper-V Manager. Since you can't SSH into the VM, we’ll create a container that has full root access and then access the file system from there.
+To check the network interface (like docker0, ip address) on the host, we need to login to the linux VM. Docker-desktop for windows run on a VM called as MobyLinuxVM, but you cannot login to that VM via Hyper-V Manager. Since you can't SSH into the VM, we’ll create a container that has full root access and then access the file system from there.
 ```bash
 # Get container with access to Docker Daemon
 docker run --privileged -it -v /var/run/docker.sock:/var/run/docker.sock jongallant/ubuntu-docker-client
@@ -99,3 +99,23 @@ By default, the Docker container can send traffic to any destination. The Docker
 ### Custom Bridge Network
 
 https://docs.docker.com/engine/tutorials/networkingcontainers/#create-your-own-bridge-network
+
+### Overlay Driver Network Architecture
+
+Refer this article for details - https://success.docker.com/article/networking
+
+### Packet flow in an overlay network
+![Alt text](/images/packetwalk.jpg)
+
+## Docker Networking – key points
+Docker adopts the Container Network Model (CNM), providing the following contract between networks and containers:
+* All containers on the same network can communicate freely with each other
+* Multiple networks are the way to segment traffic between containers and should be supported by all drivers
+* Multiple endpoints per container are the way to join a container to multiple networks
+* An endpoint is added to a network sandbox to provide it with network connectivity
+* Docker Engine can create overlay networks on a single host. Docker Swarm can create overlay networks that span hosts in the cluster
+* A container can be assigned an IP on an overlay network. Containers that use the same overlay network can communicate, even if they are running on different hosts
+
+By default, nodes in the swarm encrypt traffic between themselves and other nodes.
+Connections between nodes are automatically secured through TLS authentication with
+certificates
