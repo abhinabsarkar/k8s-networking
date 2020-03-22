@@ -20,12 +20,14 @@ Internally, CNI provisioning involves three steps:
 * Invokes the CNI plugin specified in the “type” field of the network JSON. Type field refers to the plugin being used and so CNI invokes the corresponding binary
 * Plugin code in turn will create a veth pair, check the IPAM type and data in the JSON
 
-You must deploy a Container Network Interface (CNI) based Pod network add-on so that your Pods can communicate with each other.
+You must deploy a Container Network Interface (CNI) based Pod network add-on so that your Pods can communicate with each other. You can read more about CNI in the below link  
+https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/#cni
+
 
 Some of the popular Pod network add ons are listed below:
 * Calico
 * Flannel
 * Waeve Net
 
-Refer the below link for installing a Pod network with kubeadm
-https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/#pod-network
+Refer the below link for installing add ons  
+https://kubernetes.io/docs/concepts/cluster-administration/addons/#networking-and-network-policy
