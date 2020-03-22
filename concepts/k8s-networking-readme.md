@@ -59,12 +59,8 @@ Kubernetes follows the IP-per-Pod model where it assigns a routable IP address t
 Because it assigns routable IP addresses to each Pod, and because it requires that all resources see the address of a Pod the same way, Kubernetes assumes that all Pods communicate with one another via their assigned addresses. Doing so removes the need for an external service discovery mechanism.
 
 ## Kubernetes Service
-Pods are ephemeral. Since Kubernetes can terminate Pods at any time, they are unreliable endpoints for direct communication. For example, the number of Pods in a ReplicaSet might change as the Deployment scales it up or down to accommodate changes in load on the application. Hence, Kubernetes offers the Service resource, which provides a stable IP address and balances traffic across all of the Pods behind it. Services which sit in front of Pods use a selector and labels to find the Pods they manage. All Pods with a label that matches the selector receive traffic through the Service. Like a traditional load balancer, the service can expose the Pod functionality at any port, irrespective of the port in use by the Pods themselves.
 
-![Alt text](/images/k8s-service.jpg)
-
-## Kubernetes Service Types
-[Service Types](https://github.com/abhinabsarkar/aks/blob/master/concepts/service-readme.md#service-types-publishing-services)
+* [Services](/concepts/service-readme.md)
 
 ## Kubelet
 It is the primary “node agent” that runs on each node. They ensure the containers described in the PodSpecs (YAML file describing the Pod) are running and healthy.
