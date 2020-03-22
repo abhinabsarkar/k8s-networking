@@ -80,3 +80,7 @@ The default internal domain name for a cluster is **cluster.local**. When you cr
 ![Alt text](/images/k8s-dns.jpg)
 
 The default DNS provider for Kubernetes is KubeDNS, but it’s a pluggable component. Beginning with Kubernetes 1.11 CoreDNS is available as an alternative. In addition to providing the same basic DNS functionality within the cluster, CoreDNS supports a wide range of plugins to activate additional functionality.
+
+## Kubernetes networking - joining the pieces together
+
+![Alt text](/images/k8s-networking.jpg)
