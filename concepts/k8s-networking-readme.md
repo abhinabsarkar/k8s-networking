@@ -86,6 +86,8 @@ Ingress Controller - An [ingress controller](https://kubernetes.io/docs/concepts
 
 ![Alt text](/images/k8s-networking.jpg)
 
+> cbr0 is Linux bridge that creates a veth pair for each pod with the host end of each pair connected to cbr0. Refer [kubenet network plugin](https://kubernetes.io/docs/concepts/extend-kubernetes/compute-storage-net/network-plugins/#kubenet)
+
 In the below example, we are creating AKS cluster in Azure with the advanced networking options
 ```bash
 az aks create \
