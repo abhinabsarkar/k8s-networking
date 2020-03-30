@@ -85,3 +85,16 @@ Ingress Controller - An [ingress controller](https://kubernetes.io/docs/concepts
 ## Kubernetes networking - joining the pieces together
 
 ![Alt text](/images/k8s-networking.jpg)
+
+In the below example, we are creating AKS cluster in Azure with the advanced networking options
+```bash
+az aks create \
+    --resource-group <cluster-resource-group> \
+    --name <cluster-name> \
+    --load-balancer-sku standard \
+    --network-plugin azure \  # multi-host networking which allows pods to communicate with each other, accepted values: azure, kubenet
+    --vnet-subnet-id <subnet-id> \  # subnet in an existing VNet into which to deploy the cluster
+    --docker-bridge-address 172.17.0.1/16 \ # IP address and netmask for the Docker bridge
+    --dns-service-ip 10.2.0.10 \    # IP address assigned to the Kubernetes DNS service 
+    --service-cidr 10.2.0.0/24  # A CIDR notation IP range from which to assign service cluster IPs.
+```
