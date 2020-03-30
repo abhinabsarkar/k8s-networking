@@ -10,6 +10,8 @@ The Pod is the smallest unit in Kubernetes, so it is essential to first understa
 * A node can communicate with a Pod without the use of NAT.
 * A Pod's awareness of its address is the same as how other resources see the address. The host's address doesn't mask it.
 
+K8s natively supports multi-host networking in which pods are able to communicate with each other by default, regardless of which host they live in. Kubernetes does not provide an implementation of this model by default, rather it relies on third-party tools *"network plugins"* (eg. kubenet, azure in AKS) that comply with the following requirements: all containers are able to communicate with each other without NAT; nodes are able to communicate with containers without NAT; and a container’s IP address is the same from inside and outside the container.
+
 These principles give a unique and first-class identity to every Pod in the cluster. Because of this, the networking model is more straightforward and does not need to include port mapping for the running container workloads.
 
 * [Docker vs Kubernetes networking](/concepts/docker-k8s-networking-readme.md)
