@@ -79,8 +79,11 @@ The default internal domain name for a cluster is **cluster.local**. When you cr
 
 The default DNS provider for Kubernetes is KubeDNS, but it’s a pluggable component. Beginning with Kubernetes 1.11 CoreDNS is available as an alternative. In addition to providing the same basic DNS functionality within the cluster, CoreDNS supports a wide range of plugins to activate additional functionality.
 
-## Route traffic to the cluster
+## Route traffic to the cluster - Ingress Controller
 Ingress Controller - An [ingress controller](https://kubernetes.io/docs/concepts/services-networking/ingress-controllers/) is a Kubernetes resource that routes traffic from outside your cluster to services within the cluster. You must have an ingress controller like [F5](https://clouddocs.f5.com/products/connectors/k8s-bigip-ctlr/v1.11/) or [HAProxy](https://github.com/haproxytech/kubernetes-ingress) to satisfy an Ingress. Only creating an Ingress resource has no effect.
+
+### Best explained in this video
+[**Kubernetes Ingress**](https://www.youtube.com/watch?v=VicH6KojwCI&feature=youtu.be)
 
 ## Kubernetes networking - joining the pieces together
 
