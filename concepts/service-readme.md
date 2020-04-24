@@ -55,6 +55,6 @@ External load balancers frequently use NodePort services. They receive traffic f
 
 Comparing the three Service types side-by-side together
 
-![Alt Text](/images/service-type.jpg)
+![Alt Text](/images/service-types.jpg)
 
 **ExternalName** - Creates a specific DNS entry for easier application access.
