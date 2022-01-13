@@ -30,9 +30,27 @@ A Deployment manages a ReplicaSet. Although it’s possible to launch a ReplicaS
 the ReplicaSet controller manages. By defining the desired states of Pods through a Deployment, users can perform updates to the image running within the containers and maintain the ability to perform rollbacks.
 
 ### DaemonSet
-A DaemonSet runs one copy of the Pod on each node in the Kubernetes cluster. This workload model provides the flexibility to run daemon processes such as log management, monitoring, storage providers, or network providers that handle Pod networking for the cluster.
+A DaemonSet runs one copy of the Pod on each node in the Kubernetes cluster. This workload model provides the flexibility to run daemon processes such as log management, monitoring, storage providers, or network providers that handle Pod networking for the cluster. 
 
 ### StatefulSet
-A StatefulSet controller ensures that the Pods it manages have durable storage and persistent identity.
-StatefulSets are appropriate for situations where Pods have a similar definition but need a unique identity,
-ordered deployment and scaling, and storage that persists across Pod rescheduling.
+A StatefulSet controller ensures that the Pods it manages have durable storage and persistent identity. StatefulSets are appropriate for situations where Pods have a similar definition but need a unique identity, ordered deployment and scaling, and storage that persists across Pod rescheduling. For details, refer this [blog](https://platform9.com/blog/stateful-applications-with-kubernetes/)
+* Volume - storage that’s attached to the pod and its lifecycle. A volume has no persistence at all. Once the pod is destroyed, its local volume is also released.
+* emptyDir - temporary storage created by the pod & mounted on the container. Unlike volume, where the pod will simply attach the storage to the mount.
+* Persistent Volume - storage that is persisted outside the lifecycle of the pods. It is provisioned by an administrator or dynamically provisioned using Storage Classes. Persistent Volume is managed by the cluster & their data can be retained & backed up.
+* PersistentVolumeClaim (PVC) is a request for storage by a user. It is similar to a Pod. Pods consume node resources and PVCs consume PV resources. Pods can request specific levels of resources (CPU and Memory). Claims can request specific size and access modes (e.g., they can be mounted ReadWriteOnce, ReadOnlyMany or ReadWriteMany, see AccessModes). For details, refer to [life cycle of a volume & claim](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#lifecycle-of-a-volume-and-claim)
+* StorageClass - It is used for dynamically provisioing PVs. Cluster administrators need to be able to offer a variety of PersistentVolumes that differ in more ways than size and access modes, without exposing users to the details of how those volumes are implemented. For these needs, there is the StorageClass resource. Each StorageClass has a <ins>provisioner</ins> that determines what volume plugin is used for provisioning PVs. This field must be specified. For details, refer to [StorageClass](https://kubernetes.io/docs/concepts/storage/storage-classes/)
+
+```yaml
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: standard
+provisioner: kubernetes.io/aws-ebs
+parameters:
+  type: gp2
+reclaimPolicy: Retain
+allowVolumeExpansion: true
+mountOptions:
+  - debug
+volumeBindingMode: Immediate
+```
