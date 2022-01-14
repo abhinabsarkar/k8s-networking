@@ -82,3 +82,7 @@ Following the steps in the numbered blue circles in the above diagram:
 4. Listeners are created for every port specified as Ingress resource annotation. If no port is specified, sensible defaults (80 or 443) are used.
 5. Rules are created for each path specified in your Ingress resource. This ensures that traffic to a specific path is routed to the correct TargetGroup created.
 
+| K8S Ingress | K8S Service Load Balancer |
+| ---------------------- | ------------------------- |
+| Layer 7. Can also work on layer 4 | Layer 4 |
+| Mulitple services per IP | One Service per IP |
