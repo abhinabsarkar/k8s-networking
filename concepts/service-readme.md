@@ -49,9 +49,16 @@ External load balancers frequently use NodePort services. They receive traffic f
 ![Alt Text](/images/aks-nodeport.jpg)
 > The diagram shows AKS node but the concept is native to kubernetes
 
+Limitation of NodePort
+* ports available to NodePort are in the 30,000 to 32,767 range
+* only exposes one service per port
+* need to track which nodes have pods with exposed ports
+
 **LoadBalancer** - Exposes the Service externally using a cloud provider’s load balancer. NodePort and ClusterIP Services, to which the external load balancer routes, are automatically created. It proxies the request to the corresponding Pods via NodePort and ClusterIP Services.
 
 ![Alt Text](/images/aks-loadbalancer.jpg)
+
+It is the default method for many Kubernetes installations in the cloud, but it uses an IP for every service, and that IP is configured to have its own load balancer configured in the cloud. These add costs and overhead that is overkill for essentially every cluster with multiple services. So, best is to use IngressController.
 
 Comparing the three Service types side-by-side together
 
