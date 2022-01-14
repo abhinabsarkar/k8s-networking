@@ -65,3 +65,20 @@ Comparing the three Service types side-by-side together
 ![Alt Text](/images/service-types.jpg)
 
 **ExternalName** - Creates a specific DNS entry for easier application access.
+
+## Ingress Controller
+Ingress - An API object that manages external access to the services in a cluster, typically HTTP. It provides load balancing, SSL termination, etc. It is configured to give Services externally-reachable URLs. An Ingress controller is responsible for fulfilling the Ingress, usually with a load balancer. You must have an Ingress controller to satisfy an Ingress. Only creating an Ingress resource has no effect.
+
+### How Kubernetes Ingress works with aws-alb-ingress-controller
+The following diagram details the AWS components that the aws-alb-ingress-controller creates whenever an Ingress resource is defined by the user. The Ingress resource routes ingress traffic from the ALB to the Kubernetes cluster.
+
+![alt text](/images/aws-ingress-controller.jpg)
+
+**Ingress Creation**
+Following the steps in the numbered blue circles in the above diagram:
+1. The controller watches for Ingress events from the API server. When it finds Ingress resources that satisfy its requirements, it starts the creation of AWS resources.
+2. An ALB is created for the Ingress resource.
+3. Services are created for each backend specified in the Ingress resource.
+4. Listeners are created for every port specified as Ingress resource annotation. If no port is specified, sensible defaults (80 or 443) are used.
+5. Rules are created for each path specified in your Ingress resource. This ensures that traffic to a specific path is routed to the correct TargetGroup created.
+
