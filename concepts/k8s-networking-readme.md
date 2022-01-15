@@ -113,3 +113,11 @@ az aks create \
     --dns-service-ip 10.2.0.10 \    # IP address assigned to the Kubernetes DNS service 
     --service-cidr 10.2.0.0/24  # A CIDR notation IP range from which to assign service cluster IPs.
 ```
+
+## Kubernetes Networking
+In Kubernetes, networking is implemented using [CNI (Container Network Interface)](https://github.com/containernetworking/cni). CNI is a specification for writing plugins to configure network interfaces in Linux containers. CNI is not specific to k8s only.
+
+Few examples of CNI plugin used in k8s
+* [kubenet](https://github.com/abhinabsarkar/aks/blob/master/architecture/aks-networking-readme.md#kubenet-basic-networking)
+* [Azure CNI](https://github.com/abhinabsarkar/aks/blob/master/architecture/aks-networking-readme.md#azure-cni-advanced-networking)
+* [Calico, Weave, etc](https://github.com/containernetworking/cni#3rd-party-plugins)
