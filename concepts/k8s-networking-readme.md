@@ -68,7 +68,7 @@ Because it assigns routable IP addresses to each Pod, and because it requires th
 It is the primary “node agent” that runs on each node. They ensure the containers described in the PodSpecs (YAML file describing the Pod) are running and healthy.
 
 ## Kube Proxy
-It runs on each node. It acts as a network proxy connecting locally running pods to outside world. It also functions as a load balancer (i.e. Services which provides a VIP and acts as load balancer) for groups of pods sharing the same label (i.e. if a node has multiple pods balances the traffic between those pods).
+It runs on each node. kube-proxy maintains iptables rules on nodes. These network rules allow network communication to your Pods from inside or outside of your cluster.
 
 Just to understand kube-proxy, Here’s how Kubernetes services work! A service is a collection of pods, which each have their own IP address (like 10.1.0.3, 10.2.3.5, 10.3.5.6)
 
