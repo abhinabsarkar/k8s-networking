@@ -11,6 +11,8 @@ These are explained in this video & blog
 * https://www.youtube.com/watch?v=el7768BNUPw 
 * https://jvns.ca/blog/2016/10/10/what-even-is-a-container/
 * [Union Capable File System - UCFS](https://medium.com/@knoldus/unionfs-a-file-system-of-a-container-2136cd11a779) - mounts multiple directories to a single root
+   * Properties of UCFS
+      * read-only lower layers, writable upper layer.
 
 ## Pod
 It is the smallest compute unit that can be defined, deployed and managed, encapsulating one or more containers deployed together on one host. Each pod is allocated its own internal IP address, and containers within pods can share their local storage and networking. Pods are immutable when running. Pod is like a container hosting other containers. In Kubernetes world, Pods are scaled, not the individual containers.
