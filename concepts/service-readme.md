@@ -69,6 +69,10 @@ Comparing the three Service types side-by-side together
 ## Ingress Controller
 Ingress - An API object that manages external access to the services in a cluster, typically HTTP. It provides load balancing, SSL termination, etc. It is configured to give Services externally-reachable URLs. An Ingress controller is responsible for fulfilling the Ingress, usually with a load balancer. You must have an Ingress controller to satisfy an Ingress. Only creating an Ingress resource has no effect.
 
+### How kubernetes networking works with AKS
+
+* [Ingress controller with internal load balancer](https://github.com/abhinabsarkar/aks-ingress-ilb)
+
 ### How Kubernetes Ingress works with aws-alb-ingress-controller
 The following diagram details the AWS components that the aws-alb-ingress-controller creates whenever an Ingress resource is defined by the user. The Ingress resource routes ingress traffic from the ALB to the Kubernetes cluster.
 
